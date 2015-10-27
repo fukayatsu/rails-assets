@@ -1,1 +1,1 @@
-web: bin/rails s --port 3000
+web: bundle exec thin start -p $PORT
