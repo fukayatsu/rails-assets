@@ -98,7 +98,7 @@ class Version < ActiveRecord::Base
 
   def rebuild!
     update_attribute(:rebuild, true)
-    BuildVersion.perform_async(component.bower_name, bower_version)
+    BuildVersion.new.async.perform(component.bower_name, bower_version)
   end
 
 end

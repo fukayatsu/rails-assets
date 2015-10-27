@@ -1,9 +1,7 @@
 require 'rubygems/indexer'
 
 class Reindex
-  include Sidekiq::Worker
-
-  sidekiq_options queue: 'reindex', unique: :all, retry: 0
+  include SuckerPunch::Job
 
   def perform(force = false)
     Build::Locking.with_lock(:index) do
@@ -15,7 +13,7 @@ class Reindex
         generate_indexes
 
         if ENV['DOMAIN'].present? && ENV['SHELLY_CACHE_AUTH'].present?
-          pending_index_ids.each { |id| Refresh.perform_async(id) }
+          pending_index_ids.each { |id| Refresh.new.async.perform(id) }
         end
       end
     end

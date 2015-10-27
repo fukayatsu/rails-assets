@@ -1,11 +1,11 @@
-namespace :sidekiq do
+namespace :sucker_punch do
   desc "Schedule UpdateScheduler job"
   task :update => :environment do
-    UpdateScheduler.perform_async
+    UpdateScheduler.new.async.perform
   end
 
   desc "Schedule Reindex job"
   task :reindex => :environment  do
-    Reindex.perform_async
+    Reindex.new.async.perform
   end
 end

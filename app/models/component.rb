@@ -45,11 +45,11 @@ class Component < ActiveRecord::Base
 
   def rebuild!
     versions.update_all(rebuild: true)
-    UpdateComponent.perform_async(bower_name)
+    UpdateComponent.new.async.perform(bower_name)
   end
 
   def self.rebuild!
     Version.update_all(rebuild: true)
-    UpdateScheduler.perform_async
+    UpdateScheduler.new.async.perform
   end
 end

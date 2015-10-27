@@ -9,9 +9,7 @@ module Net
 end
 
 class Refresh
-  include Sidekiq::Worker
-
-  sidekiq_options queue: 'refresh', unique: :all, retry: 3
+  include SuckerPunch::Job
 
   def perform(version_id)
     version = Version.find(version_id)

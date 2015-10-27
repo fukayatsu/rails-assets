@@ -18,8 +18,6 @@ common: &default_settings
     enabled: true
     capture_source: true
     ignore_errors: "ActionController::RoutingError,Sinatra::NotFound"
-  sidekiq:
-    capture_params: true
 
 development:
   <<: *default_settings

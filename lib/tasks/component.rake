@@ -13,7 +13,7 @@ namespace :component do
 
   desc "Schedules update of all components"
   task :update_all => [:environment] do |t, args|
-    UpdateScheduler.perform_async
+    UpdateScheduler.new.async.perform
   end
 
   desc "Schedules latest versions of given components to be converted"
@@ -24,7 +24,7 @@ namespace :component do
     input = STDIN.gets.strip
     if input == 'y'
       bower_names.each do |bower_name|
-        BuildVersion.perform_async(bower_name, 'latest')
+        BuildVersion.new.async.perform(bower_name, 'latest')
       end
 
       STDOUT.print "Done.\n"
@@ -169,7 +169,7 @@ namespace :component do
   task :reindex => [:environment] do
     Version.all.load.each do |version|
       version.update_attributes(:rebuild => true)
-      UpdateScheduler.perform_async
+      UpdateScheduler.new.async.perform
     end
   end
 

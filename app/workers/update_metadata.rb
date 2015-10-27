@@ -1,7 +1,5 @@
 class UpdateMetadata
-  include Sidekiq::Worker
-
-  sidekiq_options queue: 'default', unique: :all, retry: 0
+  include SuckerPunch::Job
 
   def perform(version_id)
     version = Version.includes(:component).find(version_id)

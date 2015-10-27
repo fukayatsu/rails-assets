@@ -24,7 +24,7 @@ module Build
       Build::Locking.with_lock(lock_name) do
         Converter.process!(name, version) do |versions_paths|
           Converter.persist!(versions_paths)
-          Reindex.perform_async
+          Reindex.new.async.perform
 
           versions_paths.first.first
         end

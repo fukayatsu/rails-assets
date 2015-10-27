@@ -19,11 +19,11 @@ gem 'slim-rails'
 gem 'redis',      '~> 3.0.0'
 gem 'redis-rails', '~> 4.0.0'
 
-gem 'sidekiq', '~> 3.3.2'
-gem 'sidekiq-limit_fetch'
-gem 'sidekiq-middleware'
-gem 'sinatra', '>= 1.3.0', :require => nil
-
+# gem 'sidekiq', '~> 3.3.2'
+# gem 'sidekiq-limit_fetch'
+# gem 'sidekiq-middleware'
+# gem 'sinatra', '>= 1.3.0', :require => nil
+gem 'sucker_punch', '~> 1.0'
 
 gem 'builder'
 gem 'autoprefixer-rails', '>= 0.6.20130728'
